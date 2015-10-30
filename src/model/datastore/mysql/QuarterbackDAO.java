@@ -19,6 +19,12 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 	
 	protected final static boolean DEBUG = true;
 
+/**
+ * This method creates an entry for a new quarterback record using SQL.
+ * 
+ * @param quarterback a Quarterback object. The object quarterback is created in Quarterback.java when a new record is added.
+ * @throws SQLException ex
+ */
 	@Override
 	public void createRecord(Quarterback quarterback) {
 		final String QUERY = "insert into quarterback (rank, lastName, firstName, yards, team, opponent) VALUES (null, ?, ?, ?, ?, ?)";
@@ -37,6 +43,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 		}
 	}
 
+	/**
+	 * This method retrieves aa single entry in the Quarterback Database. It prints it by using a toString() method.
+	 * 
+	 * @return returns a Quarterback object entry.
+	 * @throws SQLException ex
+	 */
+	
 	@Override
 	public Quarterback retrieveRecordByRank(int rank) {
 		final String QUERY = "select rank, lastName, firstName, yards, team, opponent from quarterback where rank = " + rank;
@@ -59,6 +72,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 
 		return qb;
 	}
+	
+	/**
+	 * This method retrieves all entries for a specific quarterback, by lastName. It prints all of that quarterback's records in ascending order by rank.
+	 * 
+	 * @return returns a list of lastName objects.
+	 * @throws SQLException ex
+	 */
 	
 	@Override
 	public Quarterback retrieveRecordByName(String lastName) {
@@ -83,6 +103,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 		return qb;
 	}
 	
+	/**
+	 * This method retrieves all entries for a specific team, by team. It prints all of that team's records in ascending order by rank.
+	 * 
+	 * @return returns a list of team objects.
+	 * @throws SQLException ex
+	 */
+	
 	@Override
 	public Quarterback retrieveRecordByTeam(String team) {
 		final String QUERY = "select rank, lastName, firstName, yards, team, opponent from quarterback where team = " + team;
@@ -106,6 +133,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 		return qb;
 	}
 	
+	/**
+	 * This method returns a list of all entries in the Quarterback Database. It lists them in descending order by rank by using a toString() method.
+	 * 
+	 * @return returns all entries in the database.
+	 * @throws SQLException ex
+	 */
+	
 	@Override
 	public List<Quarterback> retrieveAllRecords() {
 		final List<Quarterback> myList = new ArrayList<>();
@@ -125,6 +159,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 
 		return myList;
 	}
+	
+	/**
+	 * This method updates an existing entry for quarterback in the database, using SQL.
+	 * 
+	 * @param updatedQuarterback a Quarterback object. The object quarterback is created in Quarterback.java when an existing record is updated.
+	 * @throws SQLException ex
+	 */
 
 	@Override
 	public void updateRecord(Quarterback updatedQuarterback) {
@@ -144,6 +185,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 		}
 	}
 
+	/**
+	 * This method deletes a record by rank, using SQL. This will delete a specific entry based on the rank entered.
+	 * 
+	 * @param rank an int object. The int is passed from QuarterbackApp.java when a record is deleted.
+	 * @throws SQLException ex
+	 */
+	
 	@Override
 	public void deleteRecord(int rank) {
 		final String QUERY = "delete from quarterback where rank = ?";
@@ -156,6 +204,13 @@ public class QuarterbackDAO implements IQuarterbackDAO {
 			System.out.println("deleteRecord SQLException: " + ex.getMessage());
 		}
 	}
+	
+/**
+* This method deletes a record by quarterback, using SQL. This will delete a specific entry based on the quarterback entered.
+* 
+* @param quarterback a Quarterback object. The quarterback is passed from QuarterbackApp.java when a record is deleted.
+* @throws SQLException ex
+*/
 
 	@Override
 	public void deleteRecord(Quarterback quarterback) {
